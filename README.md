@@ -1,388 +1,336 @@
-# 🔬 ResearchMind — Multi-Agent AI Research Assistant
+# 🤖 ResearchMind AI Agent
 
-> An AI-powered multi-agent research assistant that searches the web, extracts relevant information, generates a structured research report, and critically reviews the generated report.
+A **Multi-Agent AI Research Assistant** that automates the research workflow by searching the web, reading relevant sources, generating structured research reports, and critically evaluating the final output using specialized AI agents.
 
-ResearchMind automates a complete research workflow using specialized AI agents and LLM chains.
+## 🌐 Live Demo
 
-Instead of manually searching multiple websites, reading sources, preparing a report, and reviewing the final output, ResearchMind coordinates these tasks through a four-stage AI pipeline.
+🚀 **Try the application here**
 
---
-## ✨ Features
+[https://researchmind-ai-agent-by2hritwik.streamlit.app](https://researchmind-ai-agent-by2hritwik.streamlit.app)
 
-- 🔍 AI-powered web research
-- 🤖 Specialized Search Agent
-- 📄 Reader Agent for web content extraction
-- 📝 Automated research report generation
-- 🧐 AI-powered report criticism and feedback
-- 🌐 Interactive Streamlit web interface
-- ⚡ Groq LLM inference
-- 🔎 Tavily web search
-- 🕸️ BeautifulSoup-based web scraping
-- 📥 Download generated reports as Markdown
-- 🎨 Custom dark-themed research dashboard
+## 💻 GitHub Repository
+
+[https://github.com/hritwikrupesh/researchmind-ai-agent](https://github.com/hritwikrupesh/researchmind-ai-agent)
 
 ---
 
-## 🧠 How ResearchMind Works
+## 🌟 Features
 
-ResearchMind follows a sequential multi-agent research workflow:
+---
+
+- 🔎 AI-powered Web Search using Tavily
+- 🤖 Multi-Agent AI Architecture
+- 📖 Automated Web Page Reading & Scraping
+- ✍️ AI-powered Research Report Generation
+- 🧐 AI-based Report Critique
+- 📊 Structured Research Output
+- 📑 Source Collection
+- 📥 Downloadable Research Report
+- 🖥️ Interactive Streamlit Web Application
+- ⚡ Groq-powered LLM inference
+- 🦜 LangChain Agent Orchestration
+- 🔐 Secure API Key Management
+- ☁️ Streamlit Community Cloud Deployment
+- 🧩 Modular Python Project Structure
+
+---
+
+# 🧠 Multi-Agent Architecture
+
+ResearchMind divides the research process into specialized components.
 
 ```text
-                         ┌──────────────────────┐
-                         │      User Topic      │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │    Search Agent      │
-                         │                      │
-                         │  Web Search / URLs   │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │    Reader Agent      │
-                         │                      │
-                         │ Scrape & Extract     │
-                         │ Source Content       │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │    Writer Chain      │
-                         │                      │
-                         │ Generate Research    │
-                         │ Report               │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │    Critic Chain      │
-                         │                      │
-                         │ Review & Evaluate    │
-                         │ Generated Report     │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │    Final Output      │
-                         │                      │
-                         │ Research Report +    │
-                         │ Critic Feedback      │
-                         └──────────────────────┘
+                    Research Topic
+                          │
+                          ▼
+                 ┌─────────────────┐
+                 │  Search Agent   │
+                 │     Tavily      │
+                 └────────┬────────┘
+                          │
+                          ▼
+                 ┌─────────────────┐
+                 │  Reader Agent   │
+                 │ Web Scraping    │
+                 └────────┬────────┘
+                          │
+                          ▼
+                 ┌─────────────────┐
+                 │  Writer Chain   │
+                 │ Report Creation │
+                 └────────┬────────┘
+                          │
+                          ▼
+                 ┌─────────────────┐
+                 │  Critic Chain   │
+                 │ Report Review   │
+                 └────────┬────────┘
+                          │
+                          ▼
+                 ┌─────────────────┐
+                 │  Final Output   │
+                 └─────────────────┘
+🔄 Research Workflow
+User enters a research topic
+Search Agent searches the web using Tavily
+Relevant search results are collected
+Reader Agent selects a relevant source
+The selected webpage is scraped
+Search results and scraped content are combined
+Writer Chain generates a structured research report
+Critic Chain evaluates the generated report
+Results are displayed through Streamlit
+User can download the generated report
+🤖 Agents & Components
+🔎 Search Agent
 
-🤖 Multi-Agent Architecture
-1. Search Agent 🔍
+The Search Agent is responsible for finding relevant information from the web.
 
-The Search Agent is responsible for finding relevant information about the user's research topic.
-
-It uses the Tavily search tool to retrieve:
-
-Search result titles
-URLs
-Search snippets
-Recent web information
-
-The agent is created using LangChain's agent functionality and is given access to the web_search tool.
-
-Workflow
-Research Topic
-      ↓
-Search Agent
-      ↓
+Tool
 Tavily Web Search
-      ↓
-Relevant Web Results
-2. Reader Agent 📄
+Output
+Title
+URL
+Search snippet
+📖 Reader Agent
 
-The Reader Agent takes the search results and identifies a relevant source for deeper analysis.
+The Reader Agent analyzes the search results and selects a relevant URL for deeper reading.
 
-It uses the scrape_url tool to retrieve and clean webpage content.
+It uses a custom web-scraping tool built with:
 
-The scraper:
+Requests
+BeautifulSoup
 
-Sends an HTTP request to the selected URL
-Parses the webpage using BeautifulSoup
-Removes unnecessary elements such as:
-scripts
-styles
-navigation
-footer sections
-Extracts readable text
-Limits the extracted content to a manageable size
-Workflow
+The scraper removes unnecessary HTML elements such as scripts, styles, navigation, and footer content before extracting readable text.
+
+✍️ Writer Chain
+
+The Writer Chain combines:
+
+Research Topic
++
 Search Results
-      ↓
++
+Scraped Content
+
+and generates a structured research report containing:
+
+Introduction
+Key Findings
+Conclusion
+Sources
+🧐 Critic Chain
+
+The Critic Chain evaluates the generated research report.
+
+The evaluation includes:
+
+Score
+Strengths
+Areas to Improve
+One-line Verdict
+
+Example:
+
+Score: X/10
+
+Strengths:
+
+- ...
+- ...
+
+Areas to Improve:
+
+- ...
+- ...
+
+One line verdict:
+
+...
+🛠️ Tech Stack
+Category	Technologies
+Programming	Python
+Web Application	Streamlit
+AI Orchestration	LangChain
+LLM	Groq
+AI Model	openai/gpt-oss-20b
+Web Search	Tavily
+Web Scraping	Requests, BeautifulSoup
+HTML Processing	lxml
+Environment Management	python-dotenv
+Data Handling	Pandas
+Validation	Pydantic
+Logging	Rich
+Retry Handling	Tenacity
+JSON Processing	orjson
+Deployment	Streamlit Community Cloud
+Version Control	Git, GitHub
+🧠 LLM Configuration
+
+ResearchMind currently uses:
+
+openai/gpt-oss-20b
+
+through the Groq API.
+
+The model is used for:
+
+Agent reasoning
+Source selection
+Research report generation
+Report evaluation
+
+The application uses:
+
+temperature=0
+
+for more deterministic responses.
+
+📂 Project Structure
+researchmind-ai-agent/
+│
+├── app.py
+│   └── Streamlit web application
+│
+├── agents.py
+│   ├── Groq LLM configuration
+│   ├── Search Agent
+│   ├── Reader Agent
+│   ├── Writer Chain
+│   └── Critic Chain
+│
+├── pipeline.py
+│   └── End-to-end research pipeline
+│
+├── tools.py
+│   ├── Tavily web search
+│   └── URL scraping
+│
+├── requirements.txt
+│   └── Python dependencies
+│
+├── README.md
+│   └── Project documentation
+│
+└── .gitignore
+    └── Environment and generated-file exclusions
+⚙️ Application Workflow
+User
+  │
+  ▼
+Research Topic
+  │
+  ▼
+Search Agent
+  │
+  ├── Tavily Search
+  │
+  ▼
+Search Results
+  │
+  ▼
 Reader Agent
+  │
+  ├── URL Selection
+  ├── Web Scraping
+  │
+  ▼
+Scraped Content
+  │
+  ▼
+Writer Chain
+  │
+  ▼
+Research Report
+  │
+  ▼
+Critic Chain
+  │
+  ▼
+Critic Feedback
+  │
+  ▼
+Final Result
+🖥️ Application Interface
+
+The Streamlit application provides an interactive interface where users can enter a research topic and execute the complete research pipeline.
+
+The application displays the major stages:
+
+🔎 Search Agent
       ↓
-Relevant URL
+📖 Reader Agent
       ↓
-Web Scraping
+✍️ Writer Chain
       ↓
-Clean Source Content
-3. Writer Chain 📝
+🧐 Critic Chain
 
-The Writer Chain receives:
+After execution, users can view:
 
-The original research topic
-Search results
-Detailed scraped content
+Search progress
+Research report
+Critic feedback
+Sources
+Downloadable report
+📊 Research Report
 
-It then generates a structured research report.
-
-The requested report structure is:
+The Writer Chain generates the following structure:
 
 Introduction
 
 Key Findings
-    ├── Finding 1
-    ├── Finding 2
-    └── Finding 3+
+
+1. Finding One
+2. Finding Two
+3. Finding Three
 
 Conclusion
 
 Sources
 
-The writer is instructed to produce a detailed, factual, and professional report.
+The generated report is available directly inside the Streamlit application.
 
-4. Critic Chain 🧐
+📥 Report Download
 
-After the report is generated, the Critic Chain reviews it.
+The application provides an option to download the generated research report as a Markdown file.
 
-The critic produces feedback in the following structure:
+This can be used for:
 
-Score: X/10
-
-Strengths:
-- ...
-- ...
-
-Areas to Improve:
-- ...
-- ...
-
-One line verdict:
-...
-
-This creates a separate evaluation stage after report generation.
-
-🔄 Complete Workflow
-
-For a research topic such as:
-
-Latest developments in AI agents in 2026
-
-ResearchMind executes:
-
-1. User enters research topic
-             ↓
-2. Search Agent searches the web
-             ↓
-3. Reader Agent selects and scrapes a relevant source
-             ↓
-4. Writer Chain combines the research
-             ↓
-5. Writer generates structured report
-             ↓
-6. Critic Chain reviews the report
-             ↓
-7. Streamlit displays the results
-             ↓
-8. User can download the report as Markdown
-🛠️ Tech Stack
-Technology	Purpose
-Python	Core programming language
-Streamlit	Interactive web application
-LangChain	Agent and LLM orchestration
-Groq	LLM inference
-Tavily	Web search
-BeautifulSoup	HTML parsing and content extraction
-Requests	HTTP requests for webpage scraping
-python-dotenv	Environment variable management
-Rich	Terminal output and debugging
-Pandas	Data handling support
-Pydantic	Data validation and typing support
-📁 Project Structure
-researchmind-multi-agent/
-│
-├── app.py
-│   └── Streamlit user interface
-│
-├── agents.py
-│   └── Search Agent
-│   └── Reader Agent
-│   └── Writer Chain
-│   └── Critic Chain
-│
-├── tools.py
-│   └── Tavily web search tool
-│   └── Web scraping tool
-│
-├── pipeline.py
-│   └── Programmatic research pipeline
-│
-├── requirements.txt
-│   └── Python dependencies
-│
-├── .gitignore
-│   └── Ignored files and environment secrets
-│
-├── .env
-│   └── Local API keys
-│
-└── README.md
-    └── Project documentation
-
-Note: .env is a local configuration file and should never be committed to GitHub.
-
-📄 File Responsibilities
-app.py
-
-Contains the Streamlit application.
-
-The interface provides:
-
-Research topic input
-Run Research Pipeline button
-Pipeline status cards
-Search results
-Scraped content
-Final research report
-Critic feedback
-Markdown report download
-
-The application presents the four stages visually:
-
-Search Agent
-     ↓
-Reader Agent
-     ↓
-Writer Chain
-     ↓
-Critic Chain
-agents.py
-
-Contains the AI components used by ResearchMind.
-
-LLM
-
-The project uses the Groq integration with:
-
-openai/gpt-oss-20b
-Components
-                    ChatGroq
-                       │
-          ┌────────────┼────────────┐
-          │            │            │
-          ▼            ▼            ▼
-    Search Agent   Reader Agent   Chains
-                                    │
-                              ┌─────┴─────┐
-                              ▼           ▼
-                           Writer      Critic
-                           Chain       Chain
-tools.py
-
-Contains the external tools used by the agents.
-
-web_search
-
-Uses Tavily to search the web.
-
-The tool returns information including:
-
-Title
-URL
-Snippet
-
-for retrieved search results.
-
-scrape_url
-
-Uses:
-
-Requests
-+
-BeautifulSoup
-
-to retrieve and clean webpage content.
-
-The scraper removes unnecessary HTML elements before returning readable text.
-
-pipeline.py
-
-Provides a programmatic version of the research workflow.
-
-The pipeline performs:
-
-Search
-  ↓
-Read
-  ↓
-Write
-  ↓
-Critique
-
-and maintains the research state containing:
-
-search_results
-scraped_content
-report
-feedback
-
-The pipeline can also be executed directly from the command line.
-
-🎨 User Interface
-
-ResearchMind provides a custom Streamlit interface with:
-
-Dark research dashboard
-Research topic input
-Pipeline progress cards
-Search results panel
-Scraped content panel
-Final research report
-Critic feedback
-Markdown report download
-
-The interface visually represents the progress of each research stage.
-
-⚙️ Installation
-1. Clone the Repository
-git clone https://github.com/YOUR_USERNAME/researchmind-multi-agent.git
-cd researchmind-multi-agent
-
-Replace:
-
-YOUR_USERNAME
-
-with your GitHub username.
-
-2. Create a Virtual Environment
-Windows
-python -m venv .venv
-
-Activate it:
-
-.\.venv\Scripts\Activate.ps1
-macOS / Linux
-python3 -m venv .venv
-source .venv/bin/activate
-3. Install Dependencies
-pip install -r requirements.txt
+Research documentation
+Project reports
+Technical notes
+Further analysis
+Knowledge sharing
 🔐 Environment Variables
 
-ResearchMind requires API credentials for external services.
+The application requires two API keys:
 
-Create a .env file in the project root:
+GROQ_API_KEY
+TAVILY_API_KEY
+
+Create a .env file in the project root when running locally.
 
 GROQ_API_KEY=your_groq_api_key
 TAVILY_API_KEY=your_tavily_api_key
-Important
+Groq API
 
-Never commit your .env file to GitHub.
+Create your API key from:
 
-Your .gitignore should include:
+https://console.groq.com/
+
+Tavily API
+
+Create your API key from:
+
+https://tavily.com/
+
+🔒 Security
+
+API keys should never be hard-coded into Python source files or committed to GitHub.
+
+The local .env file should remain ignored by Git.
+
+Recommended .gitignore entries:
 
 __pycache__/
 *.py[cod]
@@ -398,235 +346,336 @@ env/
 
 .DS_Store
 Thumbs.db
-▶️ Run the Application Locally
 
-Start the Streamlit application:
+For the deployed application, API keys are stored using Streamlit Community Cloud Secrets rather than committing them to the repository. Streamlit recommends keeping secrets outside source control and configuring them through the application's secrets settings. (Streamlit Secrets Management)
+
+▶️ Installation
+Clone Repository
+git clone https://github.com/hritwikrupesh/researchmind-ai-agent.git
+Navigate to Project
+cd researchmind-ai-agent
+Create Virtual Environment
+python -m venv .venv
+Activate Virtual Environment
+Windows
+.\.venv\Scripts\Activate.ps1
+Linux / macOS
+source .venv/bin/activate
+Install Dependencies
+pip install -r requirements.txt
+🚀 Run the Streamlit Application
+
+After configuring the required API keys:
 
 streamlit run app.py
 
-The application will normally be available at:
+The application will be available at:
 
 http://localhost:8501
+🧪 Run the Research Pipeline Directly
 
-Enter a research topic and click:
+The project also includes a command-line pipeline.
 
-⚡ Run Research Pipeline
-🧪 Example Usage
+Run:
 
-Enter:
+python pipeline.py
+
+Enter a topic when prompted:
+
+Enter a research topic:
+
+Example:
 
 Latest developments in AI agents in 2026
 
-Then run the research pipeline.
+The pipeline executes:
 
-ResearchMind will process the topic through:
+Search
+  ↓
+Reader
+  ↓
+Writer
+  ↓
+Critic
+☁️ Deployment
 
-Search Agent
-      ↓
-Reader Agent
-      ↓
-Writer Chain
-      ↓
-Critic Chain
+ResearchMind is deployed using Streamlit Community Cloud.
 
-The application then displays:
+Deployment Configuration
+Property	Value
+Platform	Streamlit Community Cloud
+GitHub Repository	hritwikrupesh/researchmind-ai-agent
+Branch	main
+Main File	app.py
+Python Version	3.12
+Status	Deployed
+Live Application	https://researchmind-ai-agent-by2hritwik.streamlit.app
 
-Raw Search Results
-Scraped Content
-Final Research Report
-Critic Feedback
+Streamlit Community Cloud supports deploying an application directly from a GitHub repository by selecting the repository, branch, and application entrypoint. (Streamlit Deployment Documentation)
 
-The generated research report can be downloaded as a Markdown file.
+🔐 Streamlit Cloud Secrets
 
-📊 Output
-Final Research Report
+The deployed application uses:
 
-The Writer Chain generates a report containing:
+GROQ_API_KEY = "your_groq_api_key"
+TAVILY_API_KEY = "your_tavily_api_key"
 
-Introduction
+These values are configured through:
 
-Key Findings
+Streamlit Community Cloud
+        ↓
+App Settings
+        ↓
+Secrets
 
-Conclusion
+The API keys are not stored in the GitHub repository. Streamlit recommends using its secrets management functionality for credentials and sensitive values. (Streamlit Secrets Management)
 
-Sources
-Critic Feedback
+📦 Deployment Dependencies
 
-The Critic Chain evaluates the generated report and returns:
+The project's Python dependencies are defined in:
 
-Score
+requirements.txt
 
-Strengths
+The file is located in the repository root alongside app.py.
 
-Areas to Improve
+Streamlit Community Cloud uses dependency files such as requirements.txt to install the Python packages required by the application. (Streamlit App Dependencies)
 
-One-line Verdict
+🔄 Updating the Application
 
-This provides an additional review stage after report generation.
+After making changes locally:
 
-🌐 Deployment
+git add .
+git commit -m "Update application"
+git push origin main
 
-ResearchMind can be deployed as a Streamlit web application.
+Changes pushed to the connected GitHub repository can be reflected in the deployed Streamlit application. Changes to dependencies in requirements.txt can trigger dependency reinstallation. (Streamlit Deployment Documentation)
 
-For deployment, configure the following environment secrets:
+🧪 Example Research Topics
 
-GROQ_API_KEY
-TAVILY_API_KEY
+ResearchMind can be used with topics such as:
 
-Do not upload the local .env file.
+Latest developments in AI agents in 2026
+Generative AI applications in healthcare
+Recent developments in autonomous AI agents
+Future of data engineering
+Cloud computing trends
+Applications of large language models
+AI-powered cybersecurity
+🌍 Use Cases
+🎓 Academic Research
 
-For Streamlit Community Cloud, these values should be added through the application's Secrets configuration.
+Research technical and academic topics and generate structured reports.
 
-🔒 Security
+💻 Technology Research
 
-ResearchMind uses environment variables for API credentials.
+Explore developments in:
 
-The following should remain outside version control:
+Artificial Intelligence
+Generative AI
+Cloud Computing
+Data Engineering
+Software Engineering
+Cybersecurity
+Emerging Technologies
+🧑‍💻 Developer Research
 
-.env
-.venv/
-venv/
-__pycache__/
+Research:
 
-Never expose API keys in:
+Frameworks
+Libraries
+APIs
+Programming concepts
+New technologies
+📊 Industry Research
 
-Source code
-GitHub commits
-README files
-Screenshots
-Public documentation
-⚠️ Current Limitations
+Gather publicly available information about industries and technologies.
 
-ResearchMind is currently a working prototype and has several areas that can be improved.
+📝 Report Preparation
+
+Generate a structured starting point for technical research documentation.
+
+⚠️ Limitations
+
+This project is an AI-powered research assistant and should not be considered a complete autonomous fact-checking system.
+
+Web Scraping
+
+Some websites may:
+
+Block automated requests
+Require JavaScript
+Require authentication
+Restrict automated scraping
+Return incomplete HTML
+Search Results
+
+The quality of the research depends partly on the results returned by the search service.
+
+LLM Output
+
+Generated content can contain:
+
+Inaccuracies
+Missing context
+Incorrect interpretations
+Unsupported claims
+
+Important information should therefore be verified against the original sources.
 
 Source Verification
 
-The system retrieves information from web sources, but generated claims are not independently verified against multiple primary sources.
+The current system gathers and processes information but does not independently verify every claim in the final report.
 
-Citation Validation
+Context Limitations
 
-The Writer Chain is instructed to include source URLs, but automated citation validation is not currently implemented.
+Only a limited amount of scraped webpage content is passed through the pipeline, so very large webpages may not be represented completely.
 
-Web Scraping Limitations
-
-Some websites may block automated requests or return content that cannot be cleanly extracted.
-
-Research Depth
-
-The current Reader Agent focuses on selecting a relevant URL and extracting deeper content rather than performing comprehensive multi-source document analysis.
-
-Error Handling
-
-External services such as LLM APIs, search APIs, and websites can fail or return unexpected responses.
-
-🔮 Future Enhancements
-
-Potential future improvements include:
-
-🔎 Multi-source research and cross-verification
-📚 Improved source ranking
-🔗 Automated citation validation
-🧠 Better research planning
-⚡ Parallel agent execution
-📝 Improved report formatting
+🚀 Future Improvements
+🔎 Advanced source ranking
+📚 Multiple-source research
+🤖 Parallel research agents
+🔍 Automated citation verification
+✅ Fact-checking agent
+🧠 Long-term research memory
+📜 Research history
 📄 PDF report generation
-💾 Research history
-👤 Human-in-the-loop source verification
-🔐 Improved API and error handling
-📊 Research quality metrics
-🧪 Automated report evaluation
-🌐 Improved deployment configuration
-🧩 Architecture Summary
-                         ResearchMind
-                              │
-                              ▼
-                    ┌──────────────────┐
-                    │   Streamlit UI   │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │   Search Agent   │
-                    │     LangChain    │
-                    └────────┬─────────┘
-                             │
-                       Tavily Search
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │   Reader Agent   │
-                    │     LangChain    │
-                    └────────┬─────────┘
-                             │
-                       Web Scraping
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │   Writer Chain   │
-                    │     ChatGroq     │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │   Critic Chain   │
-                    │     ChatGroq     │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │  Final Research  │
-                    │      Report      │
-                    │        +         │
-                    │ Critic Feedback  │
-                    └──────────────────┘
-🚀 Why ResearchMind?
+📝 DOCX report generation
+🌐 HTML export
+👤 Human-in-the-loop source approval
+🧠 LangGraph-based orchestration
+📊 Research analytics dashboard
+🔐 User authentication
+🗂️ Persistent research storage
+🌐 Improved web extraction
+🔬 Specialized domain research agents
+📚 Learning Outcomes
 
-ResearchMind demonstrates how an LLM application can be structured as a multi-stage AI workflow where different components are responsible for different research tasks.
+This project demonstrates practical experience with:
 
-Instead of relying on a single prompt, the application separates the research process into:
+Python
+Streamlit
+LangChain
+Agentic AI
+LLM integration
+Groq API
+Tavily Search
+Tool Calling
+Web Scraping
+BeautifulSoup
+Requests
+Prompt Engineering
+AI Report Generation
+AI Report Evaluation
+Sequential AI Workflows
+Environment Variables
+Git
+GitHub
+Cloud Deployment
+Streamlit Community Cloud
+💼 Project Highlights
+🤖 Multi-Agent AI
 
-Searching
-   ↓
-Reading
-   ↓
-Writing
-   ↓
-Critiquing
+The research workflow is divided among specialized AI components.
 
-This separation makes the workflow easier to understand, develop, test, and extend.
+🔎 Tool-Based Research
 
-📌 Project Status
+The agents interact with external tools such as web search and webpage scraping.
 
-Status: Working Prototype
+🧠 LLM Orchestration
 
-The current implementation successfully executes the complete research workflow from topic input through:
+LangChain is used to coordinate the AI agents and chains.
 
-Web Search
-    ↓
-Content Extraction
-    ↓
-Research Report Generation
-    ↓
-AI Critique
+✍️ Structured Generation
+
+The Writer Chain generates reports using a predefined structure.
+
+🧐 AI Evaluation
+
+The Critic Chain provides a second evaluation pass over the generated report.
+
+☁️ Cloud Deployment
+
+The complete application is publicly accessible through Streamlit Community Cloud.
+
+📊 Project Workflow Summary
+                USER
+                  │
+                  ▼
+          Research Topic
+                  │
+                  ▼
+          ┌───────────────┐
+          │ Search Agent  │
+          └───────┬───────┘
+                  │
+                  ▼
+          ┌───────────────┐
+          │ Reader Agent  │
+          └───────┬───────┘
+                  │
+                  ▼
+          ┌───────────────┐
+          │ Writer Chain  │
+          └───────┬───────┘
+                  │
+                  ▼
+          ┌───────────────┐
+          │ Critic Chain  │
+          └───────┬───────┘
+                  │
+                  ▼
+          Research Report
+          + Critic Feedback
+🔗 Project Links
+🌐 Live Application
+
+https://researchmind-ai-agent-by2hritwik.streamlit.app
+
+💻 GitHub Repository
+
+https://github.com/hritwikrupesh/researchmind-ai-agent
+
+🦜 LangChain
+
+https://www.langchain.com/
+
+⚡ Groq
+
+https://groq.com/
+
+🔎 Tavily
+
+https://tavily.com/
+
+🎈 Streamlit
+
+https://streamlit.io/
+
 👨‍💻 Author
 
-Hritwik Rupesh
+Hritwik Rupesh Gollu
 
 Computer Science Engineering Student
 
-⭐ Acknowledgements
+Interested in:
 
-Built with:
+Agentic AI
+Generative AI
+Artificial Intelligence
+Data Engineering
+Cloud Computing
+Software Development
+⭐ Support
 
-Python
-LangChain
-Groq
-Tavily
-Streamlit
-BeautifulSoup
-Requests#   r e s e a r c h m i n d - m u l t i - a g e n t  
- #   r e s e a r c h m i n d - m u l t i - a g e n t  
- #   r e s e a r c h m i n d - a i - a g e n t  
- #   r e s e a r c h m i n d - a i - a g e n t  
- #   r e s e a r c h m i n d - a i - a g e n t  
- 
+If you found this project useful or interesting:
+
+⭐ Give the repository a star
+🍴 Fork the project
+🐛 Report issues
+💡 Suggest improvements
+🔧 Contribute to the project
+📄 License
+
+This project is intended for educational, experimentation, and portfolio purposes.
+
+If you reuse or extend this project, please provide appropriate attribution to the original repository.
